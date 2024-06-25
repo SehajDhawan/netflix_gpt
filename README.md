@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+<!-- # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -67,4 +67,31 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 ### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify) -->
+
+
+
+
+to stop submitting the form we need to use e.preventdefault()
+
+to get value of our input we use variable_name.current.value
+
+The error you are encountering is because name.current is null when you are trying to access its value. This happens because the name input field is not rendered in the DOM when isSignIn is true. Therefore, the useRef hook does not have a reference to the input element.
+
+so we use it like : name.current ? name.current.value : ''
+
+commands to deploy on firebase
+
+npm install -g firebase-tools
+firebase login 
+firebase init
+firebase deploy
+
+
+to install redux
+
+npm i -D @reduxjs/toolkit
+
+npm i react-redux
+
+navigate can only be done in child component 
