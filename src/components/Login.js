@@ -1,15 +1,18 @@
 import React, { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 import { checkValidData } from '../utils/validate';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword,updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useDispatch } from 'react-redux';
+import {addUser} from '../utils/userSlice';
+import {Logo,Photo} from '../utils/constant'
+
 
 const Login = () => {
   const [isSignIn, setSignIn] = useState(true);
   const [Error, setError] = useState(null);
-  const navigate = useNavigate();
-
+  // const navigate = useNavigate();
+  const Dispatch=useDispatch();
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
@@ -35,17 +38,25 @@ const Login = () => {
           const user = userCredential.user;
 
           updateProfile(user, {
-            displayName: name.current.value, photoURL: "https://example.com/jane-q-user/profile.jpg"
+            displayName: name.current.value, photoURL: Photo
           }).then(() => {
+            const {uid ,email,displayName,photoURL}=auth.currentUser;
+
+            Dispatch
+            (addUser({uid:uid,email:email,displayName:displayName,photoURL:photoURL}));
+          
             // Profile updated!
             // ...
-          }).catch((error) => {
+            // navigate("/browse")
+
+          })
+          .catch((error) => {
             // An error occurred
             // ...
             setError(message);
           });
 
-          navigate('/browse');
+          // navigate('/browse');
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -59,7 +70,7 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in 
           const user = userCredential.user;
-          navigate('/browse');
+          // navigate('/browse');
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -79,7 +90,7 @@ const Login = () => {
       <Header />
       <div className='absolute'>
         <img
-          src='https://assets.nflxext.com/ffe/siteui/vlv3/a56dc29b-a0ec-4f6f-85fb-50df0680f80f/2f8ae902-8efe-49bb-9a91-51b6fcc8bf46/IN-en-20240617-popsignuptwoweeks-perspective_alpha_website_medium.jpg'
+          src= {Logo}
           alt='logo'
         />
       </div>

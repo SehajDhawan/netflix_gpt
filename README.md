@@ -95,3 +95,5 @@ npm i -D @reduxjs/toolkit
 npm i react-redux
 
 navigate can only be done in child component 
+
+everytime we have to pass the api options whenever making an api call
