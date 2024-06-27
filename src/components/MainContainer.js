@@ -3,7 +3,10 @@ import { useSelector } from 'react-redux'
 import VideoBackground from './VideoBackground'
 import VideoTitle from './VideoTitle'
 const MainContainer = () => {
+  // why not to store movies data as array in the store itslef and let the default state be an empty array
     const movies=useSelector(store=>store.movies?.nowPlayingMovies)
+
+    // the do if the movies.length === 0 return
     if(!movies) return;
     const mainMovie=movies[0];
 
