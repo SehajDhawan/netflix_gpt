@@ -9,7 +9,8 @@ const moviesSlice=createSlice({
     },
     reducers:{
         addNowPlayingMovies :(state,action)=>{
-            state.nowPlayingMovie=action.payload;
+            // you are using nowPlayingMovie instead of movies
+            state.nowPlayingMovies=action.payload;
         },
         addPopularMovie :(state,action)=>{
             state.usePopularMovies=action.payload;
